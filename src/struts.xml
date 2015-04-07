@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="struts2" extends="struts-default">
+		<action name="ajax" class="com.mlnxMS.web.AjaxAction"></action>
+		<action name="admin" class="com.mlnxMS.web.AdminAction"></action>
+	</package>
+</struts>    

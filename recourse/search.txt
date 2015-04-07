@@ -1,0 +1,13 @@
+<form id="search" action="user!showIndex.action" method="post">
+									<div style="margin-left: 25%;">
+
+										<div >
+											<input type="text" name="keywd" value="${keywd } ">
+										</div>
+										<div style="margin-top: -37px; margin-left: 183px;">
+											<button type="submit" class="btn" style="border-style: none; height: 15px" onclick="search()">
+												<span style="color: gray"><i class="icon-search icon-gray"></i></span>
+											</button>
+										</div>
+									</div>
+								</form>
