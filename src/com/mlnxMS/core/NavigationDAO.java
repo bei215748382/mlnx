@@ -24,6 +24,7 @@ public class NavigationDAO extends BaseHibernateDAO {
 	// property constants
 	public static final String NAV_NAME = "navName";
 	public static final String NAV_PRIORITY = "navPriority";
+	public static final String NAV_TYPE = "navType";
 	public static final String NAV_STATUS = "navStatus";
 
 	public void save(Navigation transientInstance) {
@@ -96,6 +97,10 @@ public class NavigationDAO extends BaseHibernateDAO {
 
 	public List<Navigation> findByNavPriority(Object navPriority) {
 		return findByProperty(NAV_PRIORITY, navPriority);
+	}
+
+	public List<Navigation> findByNavType(Object navType) {
+		return findByProperty(NAV_TYPE, navType);
 	}
 
 	public List<Navigation> findByNavStatus(Object navStatus) {

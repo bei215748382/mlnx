@@ -45,10 +45,10 @@ function deleHeader(selcId1) {
 }
 
 // 删除指定导航菜单
-function deleNavigation(selcId2) {
+function deleNavigation(selcId2, type2) {
 	if (confirm("确定删除此项？") == true) {
 		window.location.assign("admin!deleteNavigation.action?selcId2="
-				+ selcId2);
+				+ selcId2 + "&type2=" + type2);
 	}
 }
 
@@ -119,7 +119,7 @@ function deleImage(selcId11) {
 }
 
 // 修改导航菜单信息
-function modiNavigation(mdId1) {
+function modiNavigation(mdId1, type) {
 	var name = document.getElementById("navName" + mdId1).innerHTML;
 	var priority = document.getElementById("navPriority" + mdId1).innerHTML;
 	document.getElementById("navName" + mdId1).innerHTML = "<input class='input-xlarge focused' id='name"
@@ -137,17 +137,20 @@ function modiNavigation(mdId1) {
 	document.getElementById("navPriority" + mdId1).innerHTML = "<select id='priority"
 			+ mdId1 + "'>" + str + "</select>";
 	document.getElementById("modiNav" + mdId1).innerHTML = "<a class='btn btn-primary' style='cursor: pointer;' onclick='confirmModiNav("
-			+ mdId1 + ")'><i class='icon-edit icon-white'></i> 确认  </a>";
+			+ mdId1
+			+ ","
+			+ type
+			+ ")'><i class='icon-edit icon-white'></i> 确认  </a>";
 }
 
 // 确认修改导航信息
-function confirmModiNav(chosenId1) {
+function confirmModiNav(chosenId1, type) {
 	var navName = document.getElementById("name" + chosenId1).value;
 	var navPriority = document.getElementById("priority" + chosenId1).value;
 	if (confirm("确定更改此项？") == true) {
 		window.location.assign("admin!modifyNavigation.action?modiId1="
 				+ chosenId1 + "&navName1=" + navName + "&navPriority1="
-				+ navPriority);
+				+ navPriority + "&type1=" + type);
 	} else {
 		window.location.assign("admin!showNavigation.action");
 	}

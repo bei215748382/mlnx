@@ -57,7 +57,7 @@ body {
           <div class="box span10">
             <div class="box-header well" data-original-title>
               <h2>
-                <i class="icon-user"></i> 主页导航栏
+                <i class="icon-user"></i> 论坛导航栏
               </h2>
               <div class="box-icon">
                 <a href="#" class="btn btn-setting btn-round"><i
@@ -88,22 +88,22 @@ body {
                       <td class="center"><c:if
                           test="${navi.navStatus==0 }">
                           <a class="btn btn-success"
-                            href="admin!changeNavigation.action?status2=0&currId2=${navi.nid }&type=1">
+                            href="admin!changeNavigation.action?status2=0&currId2=${navi.nid }&type=2">
                             <i class="icon-ok icon-white"></i> 启用
                           </a>
                         </c:if> <c:if test="${navi.navStatus==1 }">
                           <a class="btn btn-warning"
-                            href="admin!changeNavigation.action?status2=1&currId2=${navi.nid }&type=1">
+                            href="admin!changeNavigation.action?status2=1&currId2=${navi.nid }&type=2">
                             <i class="icon-remove icon-white"></i> 禁用
                           </a>
                         </c:if> <span id="modiNav${navi.nid }"> <a
                           class="btn btn-info" style="cursor: pointer;"
-                          onclick="modiNavigation(${navi.nid }, '1')">
+                          onclick="modiNavigation(${navi.nid },'2')">
                             <i class="icon-edit icon-white"></i> 修改
                         </a>
                       </span> <a class="btn btn-danger"
                         style="cursor: pointer;"
-                        onclick="deleNavigation(${navi.nid }, '1')">
+                        onclick="deleNavigation(${navi.nid }, '2')">
                           <i class="icon-trash icon-white"></i> 删除
                       </a></td>
                     </tr>
@@ -112,7 +112,7 @@ body {
               </table>
             </div>
             <div align="right">
-              <a href="addNavigation.jsp"><button type="button"
+              <a href="addBBSNav.jsp"><button type="button"
                   class="btn btn-primary">
                   新增 <i class="icon-plus"></i>
                 </button></a>

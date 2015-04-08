@@ -12,6 +12,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.SortedMap;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -170,16 +171,27 @@ public class AdminAction extends BaseAction {
 	}
 
 	/**
-	 * 显示导航菜单
+	 * 显示主页导航菜单
 	 */
 	public void showNavigation() {
-		List<Navigation> navigations = navigationService.findAll();
+		SortedMap[] navigations = navigationService.executeQuery(
+				"select * from navigation where navType = ?", new Object[]{1});
 		request.setAttribute("navigations", navigations);
 		this.forward("showNavigation.jsp");
 	}
 
 	/**
-	 * 新增导航菜单
+	 * 显示论坛导航
+	 */
+	public void showBBSNav() {
+		SortedMap[] navigations = navigationService.executeQuery(
+				"select * from navigation where navType = ?", new Object[]{2});
+		request.setAttribute("navigations", navigations);
+		this.forward("showBBSNav.jsp");
+	}
+
+	/**
+	 * 新增主页导航菜单
 	 */
 	public String navName;
 	public int navPriority;
@@ -187,9 +199,27 @@ public class AdminAction extends BaseAction {
 		Navigation navigation = new Navigation();
 		navigation.setNavName(navName);
 		navigation.setNavPriority(navPriority);
+		navigation.setNavType(1);
 		navigation.setNavStatus(0);
 		navigationService.save(navigation);
 		response.sendRedirect("admin!showNavigation.action");
+	}
+
+	/**
+	 * 新增论坛导航菜单
+	 * 
+	 * @throws IOException
+	 */
+	public String navName2;
+	public int navPriority2;
+	public void addBBSNav() throws IOException {
+		Navigation navigation = new Navigation();
+		navigation.setNavName(navName2);
+		navigation.setNavPriority(navPriority2);
+		navigation.setNavType(2);
+		navigation.setNavStatus(0);
+		navigationService.save(navigation);
+		response.sendRedirect("admin!showBBSNav.action");
 	}
 
 	/**
@@ -197,6 +227,7 @@ public class AdminAction extends BaseAction {
 	 * 
 	 * @throws IOException
 	 */
+	public int type;
 	public int status2;
 	public int currId2;
 	public void changeNavigation() throws IOException {
@@ -206,13 +237,21 @@ public class AdminAction extends BaseAction {
 			Navigation navigation = navigationService.findById(currId2);
 			navigation.setNavStatus(1);
 			navigationService.updateObject(navigation);
-			response.sendRedirect("admin!showNavigation.action");
+			if (type == 1) {
+				response.sendRedirect("admin!showNavigation.action");
+			} else {
+				response.sendRedirect("admin!showBBSNav.action");
+			}
 			// 准备禁用指定导航
 		} else {
 			Navigation navigation = navigationService.findById(currId2);
 			navigation.setNavStatus(0);
 			navigationService.updateObject(navigation);
-			response.sendRedirect("admin!showNavigation.action");
+			if (type == 1) {
+				response.sendRedirect("admin!showNavigation.action");
+			} else {
+				response.sendRedirect("admin!showBBSNav.action");
+			}
 		}
 	}
 
@@ -221,6 +260,7 @@ public class AdminAction extends BaseAction {
 	 * 
 	 * @throws IOException
 	 */
+	public int type1;
 	public int modiId1;
 	public String navName1;
 	public int navPriority1;
@@ -230,16 +270,26 @@ public class AdminAction extends BaseAction {
 		navigation.setNavName(navName1);
 		navigation.setNavPriority(navPriority1);
 		navigationService.updateObject(navigation);
-		response.sendRedirect("admin!showNavigation.action");
+		if (type1 == 1) {
+			response.sendRedirect("admin!showNavigation.action");
+		} else {
+			response.sendRedirect("admin!showBBSNav.action");
+		}
+
 	}
 
 	/**
 	 * 删除指定导航菜单
 	 */
+	public int type2;
 	public int selcId2;
 	public void deleteNavigation() throws IOException {
 		navigationService.execDelete("navigation", selcId2, "nid");
-		response.sendRedirect("admin!showNavigation.action");
+		if (type2 == 1) {
+			response.sendRedirect("admin!showNavigation.action");
+		} else {
+			response.sendRedirect("admin!showBBSNav.action");
+		}
 	}
 
 	/**

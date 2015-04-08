@@ -50,14 +50,13 @@ body {
 
     <div class="container-fluid">
       <div class="row">
-
         <%@include file="left.jsp"%>
 
         <div class="span10">
           <div class="box span10">
             <div class="box-header well" data-original-title>
               <h2>
-                <i class="icon-user"></i> 主页导航栏
+                <i class="icon-edit"></i> 新增导航菜单
               </h2>
               <div class="box-icon">
                 <a href="#" class="btn btn-setting btn-round"><i
@@ -69,53 +68,44 @@ body {
               </div>
             </div>
             <div class="box-content">
-              <table
-                class="table table-striped table-bordered bootstrap-datatable datatable">
-                <thead>
-                  <tr>
-                    <th class="span5">导航菜单名称</th>
-                    <th class="span3">优先级</th>
-                    <th class="span4">操作</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <c:forEach items="${navigations }" var="navi">
-                    <tr>
-                      <td class="center" id="navName${navi.nid }">${navi.navName
-                        }</td>
-                      <td class="center" id="navPriority${navi.nid }">${navi.navPriority
-                        }</td>
-                      <td class="center"><c:if
-                          test="${navi.navStatus==0 }">
-                          <a class="btn btn-success"
-                            href="admin!changeNavigation.action?status2=0&currId2=${navi.nid }&type=1">
-                            <i class="icon-ok icon-white"></i> 启用
-                          </a>
-                        </c:if> <c:if test="${navi.navStatus==1 }">
-                          <a class="btn btn-warning"
-                            href="admin!changeNavigation.action?status2=1&currId2=${navi.nid }&type=1">
-                            <i class="icon-remove icon-white"></i> 禁用
-                          </a>
-                        </c:if> <span id="modiNav${navi.nid }"> <a
-                          class="btn btn-info" style="cursor: pointer;"
-                          onclick="modiNavigation(${navi.nid }, '1')">
-                            <i class="icon-edit icon-white"></i> 修改
-                        </a>
-                      </span> <a class="btn btn-danger"
-                        style="cursor: pointer;"
-                        onclick="deleNavigation(${navi.nid }, '1')">
-                          <i class="icon-trash icon-white"></i> 删除
-                      </a></td>
-                    </tr>
-                  </c:forEach>
-                </tbody>
-              </table>
-            </div>
-            <div align="right">
-              <a href="addNavigation.jsp"><button type="button"
-                  class="btn btn-primary">
-                  新增 <i class="icon-plus"></i>
-                </button></a>
+              <form class="form-horizontal"
+                action="admin!addBBSNav.action" method="post"
+                enctype="multipart/form-data">
+                <fieldset>
+
+                  <div class="control-group">
+                    <label class="control-label" for="focusedInput">导航名称
+                    </label>
+                    <div class="controls">
+                      <input class="input-xlarge focused" id="navName2"
+                        type="text" name="navName2">
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label" for="selectError3">优先级</label>
+                    <div class="controls">
+                      <select id="navPriority2" name="navPriority2">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">保存</button>
+                    &emsp;&emsp;
+                    <button type="reset" class="btn">取消</button>
+                  </div>
+                </fieldset>
+              </form>
             </div>
           </div>
         </div>
@@ -196,8 +186,5 @@ body {
   <script src="js/jquery.history.js"></script>
   <!-- application script for Charisma demo -->
   <script src="js/charisma.js"></script>
-
-  <!-- my js -->
-  <script src="js/my.js"></script>
 </body>
 </html>

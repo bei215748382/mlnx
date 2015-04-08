@@ -19,6 +19,7 @@ public class Navigation implements java.io.Serializable {
 	private Integer nid;
 	private String navName;
 	private Integer navPriority;
+	private Integer navType;
 	private Integer navStatus;
 
 	// Constructors
@@ -28,9 +29,11 @@ public class Navigation implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Navigation(String navName, Integer navPriority, Integer navStatus) {
+	public Navigation(String navName, Integer navPriority, Integer navType,
+			Integer navStatus) {
 		this.navName = navName;
 		this.navPriority = navPriority;
+		this.navType = navType;
 		this.navStatus = navStatus;
 	}
 
@@ -46,7 +49,7 @@ public class Navigation implements java.io.Serializable {
 		this.nid = nid;
 	}
 
-	@Column(name = "navName", length = 50)
+	@Column(name = "navName", nullable = false, length = 50)
 	public String getNavName() {
 		return this.navName;
 	}
@@ -55,7 +58,7 @@ public class Navigation implements java.io.Serializable {
 		this.navName = navName;
 	}
 
-	@Column(name = "navPriority")
+	@Column(name = "navPriority", nullable = false)
 	public Integer getNavPriority() {
 		return this.navPriority;
 	}
@@ -64,7 +67,16 @@ public class Navigation implements java.io.Serializable {
 		this.navPriority = navPriority;
 	}
 
-	@Column(name = "navStatus")
+	@Column(name = "navType", nullable = false)
+	public Integer getNavType() {
+		return this.navType;
+	}
+
+	public void setNavType(Integer navType) {
+		this.navType = navType;
+	}
+
+	@Column(name = "navStatus", nullable = false)
 	public Integer getNavStatus() {
 		return this.navStatus;
 	}
