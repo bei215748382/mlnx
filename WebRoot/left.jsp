@@ -41,6 +41,21 @@
       <li><a class="ajax-link" href="admin!showBBSNav.action"><i
           class="icon-bookmark"></i><span class="hidden-tablet">
             导航栏</span></a></li>
+      <li><a class="ajax-link" href="admin!showUser.action"><i
+          class="icon-bookmark"></i><span class="hidden-tablet">
+            管理用户</span></a></li>
+      <li><a class="ajax-link" href="admin!showPost.action"><i
+          class="icon-bookmark"></i><span class="hidden-tablet">
+            管理帖子</span></a></li>
+      <li><a class="ajax-link" href="admin!showResponse.action"><i
+          class="icon-bookmark"></i><span class="hidden-tablet">
+            管理回复</span></a></li>
+      <li><a class="ajax-link" href="admin!showNotice.action"><i
+          class="icon-bookmark"></i><span class="hidden-tablet">
+            管理公告</span></a></li>
+      <li><a class="ajax-link" href="admin!showEvent.action"><i
+          class="icon-bookmark"></i><span class="hidden-tablet">
+            管理活动</span></a></li>
     </ul>
   </div>
   <!--/.well -->

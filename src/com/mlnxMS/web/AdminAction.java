@@ -20,23 +20,33 @@ import com.mlnxMS.core.Banner;
 import com.mlnxMS.core.Contact;
 import com.mlnxMS.core.Content;
 import com.mlnxMS.core.Copyright;
+import com.mlnxMS.core.Event;
 import com.mlnxMS.core.Header;
 import com.mlnxMS.core.Link;
 import com.mlnxMS.core.Navigation;
+import com.mlnxMS.core.Notice;
+import com.mlnxMS.core.Post;
 import com.mlnxMS.core.Product;
 import com.mlnxMS.core.Qrcode;
 import com.mlnxMS.core.Recruitment;
+import com.mlnxMS.core.Response;
+import com.mlnxMS.core.User;
 import com.mlnxMS.service.BannerService;
 import com.mlnxMS.service.ContactService;
 import com.mlnxMS.service.ContentService;
 import com.mlnxMS.service.CopyrightService;
+import com.mlnxMS.service.EventService;
 import com.mlnxMS.service.HeaderService;
 import com.mlnxMS.service.ImageService;
 import com.mlnxMS.service.LinkService;
 import com.mlnxMS.service.NavigationService;
+import com.mlnxMS.service.NoticeService;
+import com.mlnxMS.service.PostService;
 import com.mlnxMS.service.ProductService;
 import com.mlnxMS.service.QrcodeService;
 import com.mlnxMS.service.RecruitmentService;
+import com.mlnxMS.service.ResponseService;
+import com.mlnxMS.service.UserService;
 
 public class AdminAction extends BaseAction {
 
@@ -51,6 +61,11 @@ public class AdminAction extends BaseAction {
 	RecruitmentService recruitmentService = new RecruitmentService();
 	ContactService contactService = new ContactService();
 	ImageService imageService = new ImageService();
+	UserService userService = new UserService();
+	PostService postService = new PostService();
+	ResponseService responseService = new ResponseService();
+	NoticeService noticeService = new NoticeService();
+	EventService eventService = new EventService();
 
 	/**
 	 * 管理员注销
@@ -1127,6 +1142,279 @@ public class AdminAction extends BaseAction {
 	public void deleteImage() throws IOException {
 		contactService.execDelete("image", selcId11, "iid");
 		response.sendRedirect("admin!showImage.action");
+	}
+
+	/**
+	 * 显示所有用户
+	 */
+	public void showUser() {
+		List<User> users = userService.findAll();
+		request.setAttribute("users", users);
+		this.forward("showUser.jsp");
+	}
+
+	/**
+	 * 更改用户的使用状态
+	 * 
+	 * @throws IOException
+	 */
+	public int status12;
+	public int currId12;
+	public void changeUser() throws IOException {
+		// 准备解封指定用户
+		if (status12 == 0) {
+			User user = userService.findById(currId12);
+			user.setUstatus(1);
+			userService.updateObject(user);
+			response.sendRedirect("admin!showUser.action");
+			// 准备停封指定用户
+		} else {
+			User user = userService.findById(currId12);
+			user.setUstatus(0);
+			userService.updateObject(user);
+			response.sendRedirect("admin!showUser.action");
+		}
+	}
+
+	/**
+	 * 显示所有帖子
+	 */
+	public void showPost() {
+		List<Post> posts = postService.findAll();
+		request.setAttribute("posts", posts);
+		this.forward("showPost.jsp");
+	}
+
+	/**
+	 * 显示指定帖子详细内容
+	 */
+	public int postId;
+	public void showPoContent() {
+		Post post = postService.findById(postId);
+		request.setAttribute("post", post);
+		this.forward("showPoContent.jsp");
+	}
+
+	/**
+	 * 更改指定帖子的置顶状态
+	 * 
+	 * @throws IOException
+	 */
+	public int status13;
+	public int currId13;
+	public void changePost() throws IOException {
+		// 准备解封指定用户
+		if (status13 == 0) {
+			Post post = postService.findById(currId13);
+			post.setPoStatus(1);
+			postService.updateObject(post);
+			response.sendRedirect("admin!showPost.action");
+			// 准备停封指定用户
+		} else {
+			Post post = postService.findById(currId13);
+			post.setPoStatus(0);
+			postService.updateObject(post);
+			response.sendRedirect("admin!showPost.action");
+		}
+	}
+
+	/**
+	 * 删除指定帖子
+	 * 
+	 * @throws IOException
+	 */
+	public int selcId12;
+	public void deletePost() throws IOException {
+		postService.execDelete("post", selcId12, "poId");
+		response.sendRedirect("admin!showPost.action");
+	}
+
+	/**
+	 * 显示所有回复
+	 */
+	public void showResponse() {
+		List<Response> responses = responseService.findAll();
+		request.setAttribute("responses", responses);
+		this.forward("showResponse.jsp");
+	}
+
+	/**
+	 * 删除指定回复
+	 * 
+	 * @throws IOException
+	 */
+	public int selcId13;
+	public void deleteResponse() throws IOException {
+		responseService.execDelete("response", selcId13, "rpId");
+		response.sendRedirect("admin!showResponse.action");
+	}
+
+	/**
+	 * 显示公告
+	 */
+	public void showNotice() {
+		List<Notice> notices = noticeService.findAll();
+		request.setAttribute("notices", notices);
+		this.forward("showNotice.jsp");
+	}
+
+	/**
+	 * 新增公告
+	 * 
+	 * @throws IOException
+	 */
+	public String ntTitle;
+	public String ntContent;
+	public void addNotice() throws IOException {
+		Timestamp ts = new Timestamp(new Date().getTime());
+		Notice notice = new Notice();
+		notice.setNtTitle(ntTitle);
+		notice.setNtContent(ntContent);
+		notice.setNtTime(ts);
+		notice.setNtPriority(1);
+		notice.setNtStatus(0);
+		noticeService.save(notice);
+		response.sendRedirect("admin!showNotice.action");
+	}
+
+	/**
+	 * 更改指定公告的使用状态
+	 * 
+	 * @throws IOException
+	 */
+	public int status14;
+	public int currId14;
+	public void changeNotice() throws IOException {
+		// 准备启用指定公告
+		if (status14 == 0) {
+			Notice notice = noticeService.findById(currId14);
+			notice.setNtStatus(1);
+			noticeService.updateObject(notice);
+			response.sendRedirect("admin!showNotice.action");
+			// 准备禁用指定公告
+		} else {
+			Notice notice = noticeService.findById(currId14);
+			notice.setNtStatus(0);
+			noticeService.updateObject(notice);
+			response.sendRedirect("admin!showNotice.action");
+		}
+	}
+
+	/**
+	 * 修改指定公告信息
+	 * 
+	 * @throws IOException
+	 */
+	public int modiId8;
+	public String ntTitle1;
+	public String ntContent1;
+	public int ntPriority1;
+	public void modifyNotice() throws IOException {
+		ntTitle1 = new String(ntTitle1.getBytes("ISO-8859-1"), "UTF-8");
+		ntContent1 = new String(ntContent1.getBytes("ISO-8859-1"), "UTF-8");
+		Timestamp ts = new Timestamp(new Date().getTime());
+		Notice notice = noticeService.findById(modiId8);
+		notice.setNtTitle(ntTitle1);
+		notice.setNtContent(ntContent1);
+		notice.setNtPriority(ntPriority1);
+		notice.setNtTime(ts);
+		noticeService.updateObject(notice);
+		response.sendRedirect("admin!showNotice.action");
+	}
+
+	/**
+	 * 删除指定公告
+	 * 
+	 * @throws IOException
+	 */
+	public int selcId14;
+	public void deleteNotice() throws IOException {
+		noticeService.execDelete("notice", selcId14, "ntId");
+		response.sendRedirect("admin!showNotice.action");
+	}
+
+	/**
+	 * 显示所有活动
+	 */
+	public void showEvent() {
+		List<Event> events = eventService.findAll();
+		request.setAttribute("events", events);
+		this.forward("showEvent.jsp");
+	}
+
+	/**
+	 * 新增活动
+	 * 
+	 * @throws IOException
+	 */
+	public String eTitle;
+	public String eContent;
+	public void addEvent() throws IOException {
+		Timestamp ts = new Timestamp(new Date().getTime());
+		Event event = new Event();
+		event.setEtitle(eTitle);
+		event.setEcontent(eContent);
+		event.setEtime(ts);
+		event.setEpriority(1);
+		event.setEstatus(0);
+		eventService.save(event);
+		response.sendRedirect("admin!showEvent.action");
+	}
+
+	/**
+	 * 更改指定活动的使用状态
+	 * 
+	 * @throws IOException
+	 */
+	public int status15;
+	public int currId15;
+	public void changeEvent() throws IOException {
+		// 准备启用指定活动
+		if (status15 == 0) {
+			Event event = eventService.findById(currId15);
+			event.setEstatus(1);
+			eventService.updateObject(event);
+			response.sendRedirect("admin!showEvent.action");
+			// 准备禁用指定活动
+		} else {
+			Event event = eventService.findById(currId15);
+			event.setEstatus(0);
+			eventService.updateObject(event);
+			response.sendRedirect("admin!showEvent.action");
+		}
+	}
+
+	/**
+	 * 修改指定活动信息
+	 * 
+	 * @throws IOException
+	 */
+	public int modiId9;
+	public String eTitle1;
+	public String eContent1;
+	public int ePriority1;
+	public void modifyEvent() throws IOException {
+		eTitle1 = new String(eTitle1.getBytes("ISO-8859-1"), "UTF-8");
+		eContent1 = new String(eContent1.getBytes("ISO-8859-1"), "UTF-8");
+		Timestamp ts = new Timestamp(new Date().getTime());
+		Event event = eventService.findById(modiId9);
+		event.setEtitle(eTitle1);
+		event.setEcontent(eContent1);
+		event.setEpriority(ePriority1);
+		event.setEtime(ts);
+		eventService.updateObject(event);
+		response.sendRedirect("admin!showEvent.action");
+	}
+
+	/**
+	 * 删除指定活动
+	 * 
+	 * @throws IOException
+	 */
+	public int selcId15;
+	public void deleteEvent() throws IOException {
+		eventService.execDelete("event", selcId15, "eid");
+		response.sendRedirect("admin!showEvent.action");
 	}
 
 }

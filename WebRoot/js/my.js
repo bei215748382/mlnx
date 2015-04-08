@@ -118,6 +118,36 @@ function deleImage(selcId11) {
 	}
 }
 
+// 删除指定帖子
+function delePost(selcId12) {
+	if (confirm("确定删除此项？") == true) {
+		window.location.assign("admin!deletePost.action?selcId12=" + selcId12);
+	}
+}
+
+// 删除指定回复
+function deleResponse(selcId13) {
+	if (confirm("确定删除此项？") == true) {
+		window.location.assign("admin!deleteResponse.action?selcId13="
+				+ selcId13);
+	}
+}
+
+// 删除指定公告
+function deleNotice(selcId14) {
+	if (confirm("确定删除此项？") == true) {
+		window.location
+				.assign("admin!deleteNotice.action?selcId14=" + selcId14);
+	}
+}
+
+// 删除指定活动
+function deleEvent(selcId15) {
+	if (confirm("确定删除此项？") == true) {
+		window.location.assign("admin!deleteEvent.action?selcId15=" + selcId15);
+	}
+}
+
 // 修改导航菜单信息
 function modiNavigation(mdId1, type) {
 	var name = document.getElementById("navName" + mdId1).innerHTML;
@@ -401,5 +431,85 @@ function confirmModiQr(chosenId7) {
 				+ "&qrName1=" + qrName + "&qrPosition1=" + qrPosition);
 	} else {
 		window.location.assign("admin!showQrcode.action");
+	}
+}
+
+// 修改公告信息
+function modiNotice(mdId8) {
+	var title = document.getElementById("ntTitle" + mdId8).innerHTML;
+	var content = document.getElementById("ntContent" + mdId8).innerHTML;
+	var priority = document.getElementById("ntPriority" + mdId8).innerHTML;
+	document.getElementById("ntTitle" + mdId8).innerHTML = "<input class='input-xlarge focused' style='width: 95%' id='title"
+			+ mdId8 + "' type='text' value=" + title + ">";
+	document.getElementById("ntContent" + mdId8).innerHTML = "<textarea class='cleditor' id='content"
+			+ mdId8 + "' rows='5'></textarea>";
+	document.getElementById("content" + mdId8).innerHTML = content;
+	var str = "";
+	for (i = 1; i <= 9; i++) {
+		var str1;
+		if (i == priority) {
+			str1 = "<option selected='selected'>" + i + "</option>";
+		} else {
+			str1 = "<option>" + i + "</option>";
+		}
+		str = str + str1;
+	}
+	document.getElementById("ntPriority" + mdId8).innerHTML = "<select style='width:100%' id='priority"
+			+ mdId8 + "'>" + str + "</select>";
+	document.getElementById("modiNtc" + mdId8).innerHTML = "<a class='btn btn-primary' style='cursor: pointer;' onclick='confirmModiNtc("
+			+ mdId8 + ")'><i class='icon-edit icon-white'></i> 确认 </a>";
+}
+
+// 确认修改公告信息
+function confirmModiNtc(chosenId8) {
+	var ntTitle = document.getElementById("title" + chosenId8).value;
+	var ntContent = document.getElementById("content" + chosenId8).value;
+	var ntPriority = document.getElementById("priority" + chosenId8).value;
+	if (confirm("确定更改此项？") == true) {
+		window.location.assign("admin!modifyNotice.action?modiId8=" + chosenId8
+				+ "&ntTitle1=" + ntTitle + "&ntContent1=" + ntContent
+				+ "&ntPriority1=" + ntPriority);
+	} else {
+		window.location.assign("admin!showNotice.action");
+	}
+}
+
+// 修改活动信息
+function modiEvent(mdId9) {
+	var title = document.getElementById("eTitle" + mdId9).innerHTML;
+	var content = document.getElementById("eContent" + mdId9).innerHTML;
+	var priority = document.getElementById("ePriority" + mdId9).innerHTML;
+	document.getElementById("eTitle" + mdId9).innerHTML = "<input class='input-xlarge focused' style='width: 95%' id='title"
+			+ mdId9 + "' type='text' value=" + title + ">";
+	document.getElementById("eContent" + mdId9).innerHTML = "<textarea class='cleditor' id='content"
+			+ mdId9 + "' rows='5'></textarea>";
+	document.getElementById("content" + mdId9).innerHTML = content;
+	var str = "";
+	for (i = 1; i <= 9; i++) {
+		var str1;
+		if (i == priority) {
+			str1 = "<option selected='selected'>" + i + "</option>";
+		} else {
+			str1 = "<option>" + i + "</option>";
+		}
+		str = str + str1;
+	}
+	document.getElementById("ePriority" + mdId9).innerHTML = "<select style='width:100%' id='priority"
+			+ mdId9 + "'>" + str + "</select>";
+	document.getElementById("modiEve" + mdId9).innerHTML = "<a class='btn btn-primary' style='cursor: pointer;' onclick='confirmModiEve("
+			+ mdId9 + ")'><i class='icon-edit icon-white'></i> 确认 </a>";
+}
+
+// 确认修改活动信息
+function confirmModiEve(chosenId9) {
+	var eTitle = document.getElementById("title" + chosenId9).value;
+	var eContent = document.getElementById("content" + chosenId9).value;
+	var ePriority = document.getElementById("priority" + chosenId9).value;
+	if (confirm("确定更改此项？") == true) {
+		window.location.assign("admin!modifyEvent.action?modiId9=" + chosenId9
+				+ "&eTitle1=" + eTitle + "&eContent1=" + eContent
+				+ "&ePriority1=" + ePriority);
+	} else {
+		window.location.assign("admin!showEvent.action");
 	}
 }

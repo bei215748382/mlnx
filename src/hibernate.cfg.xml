@@ -31,6 +31,12 @@
     <mapping class="com.mlnxMS.core.Header" />
     <mapping class="com.mlnxMS.core.Image" />
     <mapping class="com.mlnxMS.core.Admin" />
+    <mapping class="com.mlnxMS.core.Praise" />
+    <mapping class="com.mlnxMS.core.Post" />
+    <mapping class="com.mlnxMS.core.User" />
+    <mapping class="com.mlnxMS.core.Event" />
+    <mapping class="com.mlnxMS.core.Response" />
+    <mapping class="com.mlnxMS.core.Notice" />
 
   </session-factory>
 
