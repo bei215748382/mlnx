@@ -66,8 +66,8 @@ body {
           </div>
           <div class="box-content">
             <h1>
-              ${post.poTitle } <small>&emsp;作者：${post.user.uagname
-                }&emsp;发表时间：<f:formatDate
+              ${post.poTitle } <br />
+              <small>作者：${post.user.uagname }&emsp;发表时间：<f:formatDate
                   value="${post.poTime
                         }"
                   pattern="yyyy-MM-dd HH:mm"></f:formatDate>

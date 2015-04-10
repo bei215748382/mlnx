@@ -72,7 +72,7 @@ body {
                 class="table table-striped table-bordered bootstrap-datatable datatable">
                 <thead>
                   <tr>
-                    <th class="span3">活动标题</th>
+                    <th class="span2">活动标题</th>
                     <th class="span4">活动内容</th>
                     <th class="span1">优先级</th>
                     <th class="span2">发布时间</th>

@@ -541,6 +541,7 @@ public class AdminAction extends BaseAction {
 		qrcode.setQrImg(newName);
 		qrcode.setQrSize(wideth + "px*" + height + "px");
 		qrcode.setQrStatus(0);
+		qrcode.setQrPosition(1);
 		qrcodeService.save(qrcode);
 		response.sendRedirect("admin!showQrcode.action");
 	}
