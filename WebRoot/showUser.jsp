@@ -84,7 +84,7 @@ body {
                   <c:forEach items="${users }" var="ur">
                     <tr>
                       <td class="center" id="uicon${ur.uid }"><img
-                        src="upload/${ur.uicon }"></td>
+                        src="/docs/upload/${ur.uicon }"></td>
                       <td class="center" id="uname${ur.uid }">${ur.uname
                         }</td>
                       <td class="center" id="uagname${ur.uid }">${ur.uagname

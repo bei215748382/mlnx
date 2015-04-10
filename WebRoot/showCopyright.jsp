@@ -72,8 +72,8 @@ body {
                 class="table table-striped table-bordered bootstrap-datatable datatable">
                 <thead>
                   <tr>
-                    <th>版权信息</th>
-                    <th>操作</th>
+                    <th class="span9">版权信息</th>
+                    <th class="span3">操作</th>
                   </tr>
                 </thead>
                 <tbody>

@@ -83,7 +83,7 @@ body {
                   <c:forEach items="${qrcodes }" var="qr">
                     <tr>
                       <td class="center"><img
-                        src="upload/${qr.qrImg }"></td>
+                        src="/docs/upload/${qr.qrImg }"></td>
                       <td class="center" id="qrName${qr.qid }">${qr.qrName
                         }</td>
                       <td class="center">${qr.qrSize }</td>

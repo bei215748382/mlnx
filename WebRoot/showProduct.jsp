@@ -74,7 +74,7 @@ body {
                   <tr>
                     <th class="span2">产品名称</th>
                     <th class="span2">产品图片</th>
-                    <th class="span1">图片大小</th>
+                    <th class="span1">图片尺寸</th>
                     <th class="span3">产品描述</th>
                     <th class="span1">优先级</th>
                     <th class="span3">操作</th>
@@ -86,7 +86,7 @@ body {
                       <td class="center" id="pduName${prod.pid }">${prod.pduName
                         }</td>
                       <td class="center" id="pduImg${prod.pid }"><img
-                        src="upload/${prod.pduImg
+                        src="/docs/upload/${prod.pduImg
                         }"></td>
                       <td class="center" id="pduSize${prod.pid }">${prod.pduSize
                         }</td>

@@ -84,7 +84,7 @@ body {
                   <c:forEach items="${images }" var="img">
                     <tr>
                       <td class="center"><img
-                        src="upload/${img.imgUrl }"></td>
+                        src="/docs/upload/${img.imgUrl }"></td>
                       <td class="center">${img.imgSize }</td>
                       <td class="center" id="imgDetail${img.iid }">${img.imgDetail
                         }</td>

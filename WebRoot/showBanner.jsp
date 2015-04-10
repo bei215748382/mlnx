@@ -81,7 +81,7 @@ body {
                   <c:forEach items="${banners }" var="ban">
                     <tr>
                       <td class="center"><img
-                        src="upload/${ban.banImg }"></td>
+                        src="/docs/upload/${ban.banImg }"></td>
                       <td class="center">${ban.banSize }</td>
                       <td class="center"><c:if
                           test="${ban.banStatus==0 }">

@@ -96,8 +96,10 @@ public class AdminAction extends BaseAction {
 	public String logoFileName;// 文件名 xxxFileName
 	public void addHeader() throws IOException {
 
-		String path = ServletActionContext.getServletContext().getRealPath(
-				"/upload");
+		String path = ServletActionContext.getServletContext()
+				.getRealPath("/WEB-INF").substring(0, 18)
+				+ "/docs/upload";
+
 		String newName = System.currentTimeMillis() + ""
 				+ logoFileName.substring(logoFileName.lastIndexOf("."));
 
@@ -144,8 +146,9 @@ public class AdminAction extends BaseAction {
 	 */
 	public int selcId1;
 	public void deleteHeader() throws IOException {
-		String path = ServletActionContext.getServletContext().getRealPath(
-				"/upload");
+		String path = ServletActionContext.getServletContext()
+				.getRealPath("/WEB-INF").substring(0, 18)
+				+ "/docs/upload";
 		File file = new File(path + "\\"
 				+ headerService.findById(selcId1).getLogoImg());
 		file.delete();
@@ -325,8 +328,9 @@ public class AdminAction extends BaseAction {
 	public String bannerFileName;// 文件名 xxxFileName
 	public void addBanner() throws IOException {
 
-		String path = ServletActionContext.getServletContext().getRealPath(
-				"/upload");
+		String path = ServletActionContext.getServletContext()
+				.getRealPath("/WEB-INF").substring(0, 18)
+				+ "/docs/upload";
 		String newName = System.currentTimeMillis() + ""
 				+ bannerFileName.substring(bannerFileName.lastIndexOf("."));
 
@@ -395,8 +399,9 @@ public class AdminAction extends BaseAction {
 	 */
 	public int selcId3;
 	public void deleteBanner() throws IOException {
-		String path = ServletActionContext.getServletContext().getRealPath(
-				"/upload");
+		String path = ServletActionContext.getServletContext()
+				.getRealPath("/WEB-INF").substring(0, 18)
+				+ "/docs/upload";
 		File file = new File(path + "\\"
 				+ bannerService.findById(selcId3).getBanImg());
 		file.delete();
@@ -504,8 +509,9 @@ public class AdminAction extends BaseAction {
 	public File qrcode;// 客户端的文件对象
 	public String qrcodeFileName;// 文件名 xxxFileName
 	public void addQrcode() throws IOException {
-		String path = ServletActionContext.getServletContext().getRealPath(
-				"/upload");
+		String path = ServletActionContext.getServletContext()
+				.getRealPath("/WEB-INF").substring(0, 18)
+				+ "/docs/upload";
 		String newName = System.currentTimeMillis() + ""
 				+ qrcodeFileName.substring(qrcodeFileName.lastIndexOf("."));
 
@@ -576,8 +582,9 @@ public class AdminAction extends BaseAction {
 	 */
 	public int selcId4;
 	public void deleteQrcode() throws IOException {
-		String path = ServletActionContext.getServletContext().getRealPath(
-				"/upload");
+		String path = ServletActionContext.getServletContext()
+				.getRealPath("/WEB-INF").substring(0, 18)
+				+ "/docs/upload";
 		File file = new File(path + "\\"
 				+ qrcodeService.findById(selcId4).getQrImg());
 		file.delete();
@@ -743,8 +750,9 @@ public class AdminAction extends BaseAction {
 	public String pduDetail;
 	public int pduPriority;
 	public void addProduct() throws IOException {
-		String path = ServletActionContext.getServletContext().getRealPath(
-				"/upload");
+		String path = ServletActionContext.getServletContext()
+				.getRealPath("/WEB-INF").substring(0, 18)
+				+ "/docs/upload";
 		String newName = System.currentTimeMillis() + ""
 				+ productFileName.substring(productFileName.lastIndexOf("."));
 
@@ -836,8 +844,9 @@ public class AdminAction extends BaseAction {
 	 */
 	public int selcId8;
 	public void deleteProduct() throws IOException {
-		String path = ServletActionContext.getServletContext().getRealPath(
-				"/upload");
+		String path = ServletActionContext.getServletContext()
+				.getRealPath("/WEB-INF").substring(0, 18)
+				+ "/docs/upload";
 		File file = new File(path + "\\"
 				+ productService.findById(selcId8).getPduImg());
 		file.delete();
@@ -1049,8 +1058,9 @@ public class AdminAction extends BaseAction {
 	public String imgDetail;
 	public String imgType;
 	public void addImage() throws IOException {
-		String path = ServletActionContext.getServletContext().getRealPath(
-				"/upload");
+		String path = ServletActionContext.getServletContext()
+				.getRealPath("/WEB-INF").substring(0, 18)
+				+ "/docs/upload";
 		String newName = System.currentTimeMillis() + ""
 				+ imgFileName.substring(imgFileName.lastIndexOf("."));
 
@@ -1141,6 +1151,12 @@ public class AdminAction extends BaseAction {
 	 */
 	public int selcId11;
 	public void deleteImage() throws IOException {
+		String path = ServletActionContext.getServletContext()
+				.getRealPath("/WEB-INF").substring(0, 18)
+				+ "/docs/upload";
+		File file = new File(path + "\\"
+				+ imageService.findById(selcId11).getIid());
+		file.delete();
 		contactService.execDelete("image", selcId11, "iid");
 		response.sendRedirect("admin!showImage.action");
 	}

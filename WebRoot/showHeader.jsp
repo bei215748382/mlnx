@@ -82,7 +82,7 @@ body {
                   <c:forEach items="${headers }" var="head">
                     <tr>
                       <td class="center"><img
-                        src="upload/${head.logoImg }"></td>
+                        src="/docs/upload/${head.logoImg }"></td>
                       <td class="center">${head.comName }</td>
                       <td class="center">${head.logoSize }</td>
                       <td class="center"><c:if
