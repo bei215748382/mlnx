@@ -19,6 +19,7 @@ public class Banner implements java.io.Serializable {
 	private Integer bid;
 	private String banImg;
 	private String banSize;
+	private Integer banPriority;
 	private Integer banStatus;
 
 	// Constructors
@@ -28,9 +29,11 @@ public class Banner implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Banner(String banImg, String banSize, Integer banStatus) {
+	public Banner(String banImg, String banSize, Integer banPriority,
+			Integer banStatus) {
 		this.banImg = banImg;
 		this.banSize = banSize;
+		this.banPriority = banPriority;
 		this.banStatus = banStatus;
 	}
 
@@ -46,7 +49,7 @@ public class Banner implements java.io.Serializable {
 		this.bid = bid;
 	}
 
-	@Column(name = "banImg", length = 50)
+	@Column(name = "banImg", nullable = false, length = 50)
 	public String getBanImg() {
 		return this.banImg;
 	}
@@ -55,7 +58,7 @@ public class Banner implements java.io.Serializable {
 		this.banImg = banImg;
 	}
 
-	@Column(name = "banSize", length = 50)
+	@Column(name = "banSize", nullable = false, length = 50)
 	public String getBanSize() {
 		return this.banSize;
 	}
@@ -64,7 +67,16 @@ public class Banner implements java.io.Serializable {
 		this.banSize = banSize;
 	}
 
-	@Column(name = "banStatus")
+	@Column(name = "banPriority", nullable = false)
+	public Integer getBanPriority() {
+		return this.banPriority;
+	}
+
+	public void setBanPriority(Integer banPriority) {
+		this.banPriority = banPriority;
+	}
+
+	@Column(name = "banStatus", nullable = false)
 	public Integer getBanStatus() {
 		return this.banStatus;
 	}

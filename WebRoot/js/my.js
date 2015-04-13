@@ -513,3 +513,33 @@ function confirmModiEve(chosenId9) {
 		window.location.assign("admin!showEvent.action");
 	}
 }
+
+// 修改banner信息
+function modiBanner(mdId10) {
+	var priority = document.getElementById("banPriority" + mdId10).innerHTML;
+	var str = "";
+	for (i = 1; i <= 9; i++) {
+		var str1;
+		if (i == priority) {
+			str1 = "<option selected='selected'>" + i + "</option>";
+		} else {
+			str1 = "<option>" + i + "</option>";
+		}
+		str = str + str1;
+	}
+	document.getElementById("banPriority" + mdId10).innerHTML = "<select style='width:100%' id='priority"
+			+ mdId10 + "'>" + str + "</select>";
+	document.getElementById("modiBan" + mdId10).innerHTML = "<a class='btn btn-primary' style='cursor: pointer;' onclick='confirmModiBan("
+			+ mdId10 + ")'><i class='icon-edit icon-white'></i> 确认 </a>";
+}
+
+// 确认修改banner信息
+function confirmModiBan(chosenId10) {
+	var banPriority = document.getElementById("priority" + chosenId10).value;
+	if (confirm("确定更改此项？") == true) {
+		window.location.assign("admin!modifyBanner.action?modiId10="
+				+ chosenId10 + "&banPriority1=" + banPriority);
+	} else {
+		window.location.assign("admin!showBanner.action");
+	}
+}

@@ -23,6 +23,7 @@ public class BannerDAO extends BaseHibernateDAO {
 	// property constants
 	public static final String BAN_IMG = "banImg";
 	public static final String BAN_SIZE = "banSize";
+	public static final String BAN_PRIORITY = "banPriority";
 	public static final String BAN_STATUS = "banStatus";
 
 	public void save(Banner transientInstance) {
@@ -95,6 +96,10 @@ public class BannerDAO extends BaseHibernateDAO {
 
 	public List<Banner> findByBanSize(Object banSize) {
 		return findByProperty(BAN_SIZE, banSize);
+	}
+
+	public List<Banner> findByBanPriority(Object banPriority) {
+		return findByProperty(BAN_PRIORITY, banPriority);
 	}
 
 	public List<Banner> findByBanStatus(Object banStatus) {

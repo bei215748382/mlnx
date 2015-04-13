@@ -74,9 +74,10 @@ body {
                 <thead>
                   <tr>
                     <th class="span2">用户头像</th>
-                    <th class="span3">用户名</th>
-                    <th class="span3">用户昵称</th>
+                    <th class="span2">用户名</th>
+                    <th class="span2">用户昵称</th>
                     <th class="span2">用户积分</th>
+                    <th class="span2">总签到天数</th>
                     <th class="span2">操作</th>
                   </tr>
                 </thead>
@@ -90,6 +91,8 @@ body {
                       <td class="center" id="uagname${ur.uid }">${ur.uagname
                         }</td>
                       <td class="center" id="uscore${ur.uid }">${ur.uscore
+                        }</td>
+                      <td class="center" id="currentDays${ur.uid }">${ur.currentDays
                         }</td>
                       <td class="center"><c:if
                           test="${ur.ustatus==0 }">

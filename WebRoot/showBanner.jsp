@@ -73,7 +73,8 @@ body {
                 <thead>
                   <tr>
                     <th class="span4">滚动图片</th>
-                    <th>图片尺寸</th>
+                    <th class="span3">图片尺寸</th>
+                    <th class="span2">优先级</th>
                     <th class="span3">操作</th>
                   </tr>
                 </thead>
@@ -83,6 +84,8 @@ body {
                       <td class="center"><img
                         src="/docs/upload/${ban.banImg }"></td>
                       <td class="center">${ban.banSize }</td>
+                      <td class="center" id="banPriority${ban.bid }">${ban.banPriority
+                        }</td>
                       <td class="center"><c:if
                           test="${ban.banStatus==0 }">
                           <a class="btn btn-success"
@@ -94,7 +97,12 @@ body {
                             href="admin!changeBanner.action?status3=1&currId3=${ban.bid }">
                             <i class="icon-remove icon-white"></i> 禁用
                           </a>
-                        </c:if> <a class="btn btn-danger"
+                        </c:if> <span id="modiBan${ban.bid }"> <a
+                          class="btn btn-info" style="cursor: pointer;"
+                          onclick="modiBanner(${ban.bid })"> <i
+                            class="icon-edit icon-white"></i> 修改
+                        </a>
+                      </span> <a class="btn btn-danger"
                         style="cursor: pointer;"
                         onclick="deleBanner(${ban.bid })"> <i
                           class="icon-trash icon-white"></i> 删除

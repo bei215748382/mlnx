@@ -364,6 +364,7 @@ public class AdminAction extends BaseAction {
 		Banner banner = new Banner();
 		banner.setBanImg(newName);
 		banner.setBanSize(wideth + "px*" + height + "px");
+		banner.setBanPriority(1);
 		banner.setBanStatus(0);
 		bannerService.save(banner);
 		response.sendRedirect("admin!showBanner.action");
@@ -390,6 +391,20 @@ public class AdminAction extends BaseAction {
 			bannerService.updateObject(banner);
 			response.sendRedirect("admin!showBanner.action");
 		}
+	}
+
+	/**
+	 * 修改指定banner信息
+	 * 
+	 * @throws IOException
+	 */
+	public int modiId10;
+	public int banPriority1;
+	public void modifyBanner() throws IOException {
+		Banner banner = bannerService.findById(modiId10);
+		banner.setBanPriority(banPriority1);
+		bannerService.updateObject(banner);
+		response.sendRedirect("admin!showBanner.action");
 	}
 
 	/**
