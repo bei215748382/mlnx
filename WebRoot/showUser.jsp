@@ -92,7 +92,7 @@ body {
                         }</td>
                       <td class="center" id="uscore${ur.uid }">${ur.uscore
                         }</td>
-                      <td class="center" id="currentDays${ur.uid }">${ur.currentDays
+                      <td class="center" id="currentDays${ur.uid }">${ur.historyDays
                         }</td>
                       <td class="center"><c:if
                           test="${ur.ustatus==0 }">
