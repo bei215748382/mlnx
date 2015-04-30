@@ -153,7 +153,7 @@ function modiNavigation(mdId1, type) {
 	var name = document.getElementById("navName" + mdId1).innerHTML;
 	var priority = document.getElementById("navPriority" + mdId1).innerHTML;
 	document.getElementById("navName" + mdId1).innerHTML = "<input class='input-xlarge focused' id='name"
-			+ mdId1 + "' type='text' value=" + name + ">";
+			+ mdId1 + "' type='text' value='" + name + "'>";
 	var str = "";
 	for (i = 1; i <= 9; i++) {
 		var str1;
