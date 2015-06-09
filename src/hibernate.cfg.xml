@@ -37,6 +37,12 @@
     <mapping class="com.mlnxMS.core.Event" />
     <mapping class="com.mlnxMS.core.Response" />
     <mapping class="com.mlnxMS.core.Notice" />
+    <mapping class="com.mlnxMS.core.Userinfo5" />
+    <mapping class="com.mlnxMS.core.Userinfo4" />
+    <mapping class="com.mlnxMS.core.Userinfo3" />
+    <mapping class="com.mlnxMS.core.Userinfo2" />
+    <mapping class="com.mlnxMS.core.Userinfo1" />
+    <mapping class="com.mlnxMS.core.Collection" />
 
   </session-factory>
 

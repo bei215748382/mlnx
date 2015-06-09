@@ -35,9 +35,10 @@ public class Response implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public Response(User userByReplyerId, Post post, String rpContent,
-			Integer rpPosition) {
+	public Response(User userByReplyerId, User userByToUid, Post post,
+			String rpContent, Integer rpPosition) {
 		this.userByReplyerId = userByReplyerId;
+		this.userByToUid = userByToUid;
 		this.post = post;
 		this.rpContent = rpContent;
 		this.rpPosition = rpPosition;
@@ -75,7 +76,7 @@ public class Response implements java.io.Serializable {
 		this.userByReplyerId = userByReplyerId;
 	}
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "toUid")
+	@JoinColumn(name = "toUid", nullable = false)
 	public User getUserByToUid() {
 		return this.userByToUid;
 	}

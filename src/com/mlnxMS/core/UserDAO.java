@@ -25,8 +25,11 @@ public class UserDAO extends BaseHibernateDAO {
 	// property constants
 	public static final String UNAME = "uname";
 	public static final String UPASS = "upass";
+	public static final String UEMAIL = "uemail";
 	public static final String UAGNAME = "uagname";
-	public static final String UICON = "uicon";
+	public static final String UICON1 = "uicon1";
+	public static final String UICON2 = "uicon2";
+	public static final String UICON3 = "uicon3";
 	public static final String HISTORY_DAYS = "historyDays";
 	public static final String RUNNING_DAYS = "runningDays";
 	public static final String USCORE = "uscore";
@@ -103,12 +106,24 @@ public class UserDAO extends BaseHibernateDAO {
 		return findByProperty(UPASS, upass);
 	}
 
+	public List<User> findByUemail(Object uemail) {
+		return findByProperty(UEMAIL, uemail);
+	}
+
 	public List<User> findByUagname(Object uagname) {
 		return findByProperty(UAGNAME, uagname);
 	}
 
-	public List<User> findByUicon(Object uicon) {
-		return findByProperty(UICON, uicon);
+	public List<User> findByUicon1(Object uicon1) {
+		return findByProperty(UICON1, uicon1);
+	}
+
+	public List<User> findByUicon2(Object uicon2) {
+		return findByProperty(UICON2, uicon2);
+	}
+
+	public List<User> findByUicon3(Object uicon3) {
+		return findByProperty(UICON3, uicon3);
 	}
 
 	public List<User> findByHistoryDays(Object historyDays) {
