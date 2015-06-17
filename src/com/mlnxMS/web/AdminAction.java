@@ -1312,19 +1312,6 @@ public class AdminAction extends BaseAction {
 		notice.setNtPriority(1);
 		notice.setNtStatus(0);
 		noticeService.save(notice);
-		@SuppressWarnings("unchecked")
-		List<User> users = userService.findAll();
-		for (int i = 0; i < users.size(); i++) {
-			if (users.get(i).getUid().intValue() > 0) {
-				Mail mail = new Mail();
-				mail.setUserBySendUid(userService.findById(0));
-				mail.setUserByReceiveUid(users.get(i));
-				mail.setMailTitle(ntTitle);
-				mail.setMailContent(ntContent);
-				mail.setMstatus(0);
-				mailService.save(mail);
-			}
-		}
 		response.sendRedirect("admin!showNotice.action");
 	}
 
@@ -1341,6 +1328,19 @@ public class AdminAction extends BaseAction {
 			Notice notice = noticeService.findById(currId14);
 			notice.setNtStatus(1);
 			noticeService.updateObject(notice);
+			@SuppressWarnings("unchecked")
+			List<User> users = userService.findAll();
+			for (int i = 0; i < users.size(); i++) {
+				if (users.get(i).getUid().intValue() > 0) {
+					Mail mail = new Mail();
+					mail.setUserBySendUid(userService.findById(0));
+					mail.setUserByReceiveUid(users.get(i));
+					mail.setMailTitle(notice.getNtTitle());
+					mail.setMailContent(notice.getNtContent());
+					mail.setMstatus(0);
+					mailService.save(mail);
+				}
+			}
 			response.sendRedirect("admin!showNotice.action");
 			// 准备禁用指定公告
 		} else {
