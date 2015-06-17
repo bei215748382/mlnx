@@ -41,9 +41,11 @@ public class User implements java.io.Serializable {
 	private Set<Userinfo3> userinfo3s = new HashSet<Userinfo3>(0);
 	private Set<Userinfo1> userinfo1s = new HashSet<Userinfo1>(0);
 	private Set<Userinfo2> userinfo2s = new HashSet<Userinfo2>(0);
+	private Set<Mail> mailsForSendUid = new HashSet<Mail>(0);
 	private Set<Response> responsesForToUid = new HashSet<Response>(0);
 	private Set<Userinfo5> userinfo5s = new HashSet<Userinfo5>(0);
 	private Set<Userinfo4> userinfo4s = new HashSet<Userinfo4>(0);
+	private Set<Mail> mailsForReceiveUid = new HashSet<Mail>(0);
 	private Set<Post> posts = new HashSet<Post>(0);
 
 	// Constructors
@@ -76,8 +78,9 @@ public class User implements java.io.Serializable {
 			Integer ustatus, Set<Collection> collections,
 			Set<Response> responsesForReplyerId, Set<Praise> praises,
 			Set<Userinfo3> userinfo3s, Set<Userinfo1> userinfo1s,
-			Set<Userinfo2> userinfo2s, Set<Response> responsesForToUid,
-			Set<Userinfo5> userinfo5s, Set<Userinfo4> userinfo4s,
+			Set<Userinfo2> userinfo2s, Set<Mail> mailsForSendUid,
+			Set<Response> responsesForToUid, Set<Userinfo5> userinfo5s,
+			Set<Userinfo4> userinfo4s, Set<Mail> mailsForReceiveUid,
 			Set<Post> posts) {
 		this.uname = uname;
 		this.upass = upass;
@@ -97,9 +100,11 @@ public class User implements java.io.Serializable {
 		this.userinfo3s = userinfo3s;
 		this.userinfo1s = userinfo1s;
 		this.userinfo2s = userinfo2s;
+		this.mailsForSendUid = mailsForSendUid;
 		this.responsesForToUid = responsesForToUid;
 		this.userinfo5s = userinfo5s;
 		this.userinfo4s = userinfo4s;
+		this.mailsForReceiveUid = mailsForReceiveUid;
 		this.posts = posts;
 	}
 
@@ -270,6 +275,14 @@ public class User implements java.io.Serializable {
 	public void setUserinfo2s(Set<Userinfo2> userinfo2s) {
 		this.userinfo2s = userinfo2s;
 	}
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "userBySendUid")
+	public Set<Mail> getMailsForSendUid() {
+		return this.mailsForSendUid;
+	}
+
+	public void setMailsForSendUid(Set<Mail> mailsForSendUid) {
+		this.mailsForSendUid = mailsForSendUid;
+	}
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "userByToUid")
 	public Set<Response> getResponsesForToUid() {
 		return this.responsesForToUid;
@@ -293,6 +306,14 @@ public class User implements java.io.Serializable {
 
 	public void setUserinfo4s(Set<Userinfo4> userinfo4s) {
 		this.userinfo4s = userinfo4s;
+	}
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "userByReceiveUid")
+	public Set<Mail> getMailsForReceiveUid() {
+		return this.mailsForReceiveUid;
+	}
+
+	public void setMailsForReceiveUid(Set<Mail> mailsForReceiveUid) {
+		this.mailsForReceiveUid = mailsForReceiveUid;
 	}
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
 	public Set<Post> getPosts() {

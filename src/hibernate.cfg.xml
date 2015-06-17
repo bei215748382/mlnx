@@ -43,6 +43,7 @@
     <mapping class="com.mlnxMS.core.Userinfo2" />
     <mapping class="com.mlnxMS.core.Userinfo1" />
     <mapping class="com.mlnxMS.core.Collection" />
+    <mapping class="com.mlnxMS.core.Mail" />
 
   </session-factory>
 
