@@ -174,6 +174,7 @@ public class AdminAction extends BaseAction {
 		// 准备启用，首先禁用原来页顶
 		if (status1 == 0) {
 
+			@SuppressWarnings("unchecked")
 			List<Header> headers = headerService.findAll();
 			for (Iterator<Header> iterator = headers.iterator(); iterator
 					.hasNext();) {
@@ -199,6 +200,7 @@ public class AdminAction extends BaseAction {
 	 * 显示主页导航菜单
 	 */
 	public void showNavigation() {
+		@SuppressWarnings("rawtypes")
 		SortedMap[] navigations = navigationService.executeQuery(
 				"select * from navigation where navType = ?", new Object[]{1});
 		request.setAttribute("navigations", navigations);
@@ -209,6 +211,7 @@ public class AdminAction extends BaseAction {
 	 * 显示论坛导航
 	 */
 	public void showBBSNav() {
+		@SuppressWarnings("rawtypes")
 		SortedMap[] navigations = navigationService.executeQuery(
 				"select * from navigation where navType = ?", new Object[]{2});
 		request.setAttribute("navigations", navigations);
@@ -321,6 +324,7 @@ public class AdminAction extends BaseAction {
 	 * 显示banner
 	 */
 	public void showBanner() {
+		@SuppressWarnings("unchecked")
 		List<Banner> banners = bannerService.findAll();
 		request.setAttribute("banners", banners);
 		this.forward("showBanner.jsp");
@@ -434,6 +438,7 @@ public class AdminAction extends BaseAction {
 	 * 显示页面内容
 	 */
 	public void showContent() {
+		@SuppressWarnings("unchecked")
 		List<Content> contents = contentService.findAll();
 		request.setAttribute("contents", contents);
 		this.forward("showContent.jsp");
@@ -516,6 +521,7 @@ public class AdminAction extends BaseAction {
 	 * 显示二维码信息
 	 */
 	public void showQrcode() {
+		@SuppressWarnings("unchecked")
 		List<Qrcode> qrcodes = qrcodeService.findAll();
 		request.setAttribute("qrcodes", qrcodes);
 		this.forward("showQrcode.jsp");
@@ -634,6 +640,7 @@ public class AdminAction extends BaseAction {
 	 * 显示友链信息
 	 */
 	public void showLink() {
+		@SuppressWarnings("unchecked")
 		List<Link> links = linkService.findAll();
 		request.setAttribute("links", links);
 		this.forward("showLink.jsp");
@@ -693,6 +700,7 @@ public class AdminAction extends BaseAction {
 	 * 显示版权信息
 	 */
 	public void showCopyright() {
+		@SuppressWarnings("unchecked")
 		List<Copyright> copyrights = copyrightService.findAll();
 		request.setAttribute("copyrights", copyrights);
 		this.forward("showCopyright.jsp");
@@ -724,6 +732,7 @@ public class AdminAction extends BaseAction {
 		// 准备启用，首先禁用原来版权信息
 		if (status6 == 0) {
 
+			@SuppressWarnings("unchecked")
 			List<Copyright> copyrights = copyrightService.findAll();
 			for (Iterator<Copyright> iterator = copyrights.iterator(); iterator
 					.hasNext();) {
@@ -760,6 +769,7 @@ public class AdminAction extends BaseAction {
 	 * 显示产品信息
 	 */
 	public void showProduct() {
+		@SuppressWarnings("unchecked")
 		List<Product> products = productService.findAll();
 		request.setAttribute("products", products);
 		this.forward("showProduct.jsp");
@@ -879,6 +889,7 @@ public class AdminAction extends BaseAction {
 	 * 显示招聘信息
 	 */
 	public void showRecruitment() {
+		@SuppressWarnings("unchecked")
 		List<Recruitment> recruitments = recruitmentService.findAll();
 		request.setAttribute("recruitments", recruitments);
 		this.forward("showRecruitment.jsp");
@@ -967,6 +978,7 @@ public class AdminAction extends BaseAction {
 	 * 显示联系信息
 	 */
 	public void showContact() {
+		@SuppressWarnings("unchecked")
 		List<Contact> contacts = contactService.findAll();
 		request.setAttribute("contacts", contacts);
 		this.forward("showContact.jsp");
@@ -1004,6 +1016,7 @@ public class AdminAction extends BaseAction {
 		// 准备启用，首先禁用原来联系信息
 		if (status10 == 0) {
 
+			@SuppressWarnings("unchecked")
 			List<Contact> contacts = contactService.findAll();
 			for (Iterator<Contact> iterator = contacts.iterator(); iterator
 					.hasNext();) {
@@ -1064,6 +1077,7 @@ public class AdminAction extends BaseAction {
 	 * 显示图片
 	 */
 	public void showImage() {
+		@SuppressWarnings("unchecked")
 		List<Image> images = imageService.findAll();
 		request.setAttribute("images", images);
 		this.forward("showImage.jsp");
@@ -1186,6 +1200,7 @@ public class AdminAction extends BaseAction {
 	 * 显示所有用户
 	 */
 	public void showUser() {
+		@SuppressWarnings("unchecked")
 		List<User> users = userService.findAll();
 		request.setAttribute("users", users);
 		this.forward("showUser.jsp");
@@ -1218,6 +1233,7 @@ public class AdminAction extends BaseAction {
 	 * 显示所有帖子
 	 */
 	public void showPost() {
+		@SuppressWarnings("unchecked")
 		List<Post> posts = postService.findAll();
 		request.setAttribute("posts", posts);
 		this.forward("showPost.jsp");
@@ -1271,6 +1287,7 @@ public class AdminAction extends BaseAction {
 	 * 显示所有回复
 	 */
 	public void showResponse() {
+		@SuppressWarnings("unchecked")
 		List<Response> responses = responseService.findAll();
 		request.setAttribute("responses", responses);
 		this.forward("showResponse.jsp");
@@ -1291,6 +1308,7 @@ public class AdminAction extends BaseAction {
 	 * 显示公告
 	 */
 	public void showNotice() {
+		@SuppressWarnings("unchecked")
 		List<Notice> notices = noticeService.findAll();
 		request.setAttribute("notices", notices);
 		this.forward("showNotice.jsp");
@@ -1388,6 +1406,7 @@ public class AdminAction extends BaseAction {
 	 * 显示所有活动
 	 */
 	public void showEvent() {
+		@SuppressWarnings("unchecked")
 		List<Event> events = eventService.findAll();
 		request.setAttribute("events", events);
 		this.forward("showEvent.jsp");

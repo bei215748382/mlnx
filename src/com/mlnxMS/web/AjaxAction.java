@@ -25,6 +25,7 @@ public class AjaxAction extends BaseAction {
 
 		PrintWriter out = ServletActionContext.getResponse().getWriter();
 
+		@SuppressWarnings("unchecked")
 		List<Admin> admins = adminService.findAll();
 		boolean exist = true;
 		for (Iterator<Admin> iterator = admins.iterator(); iterator.hasNext();) {
