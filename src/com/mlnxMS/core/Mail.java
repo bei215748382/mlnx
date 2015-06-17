@@ -3,6 +3,8 @@ package com.mlnxMS.core;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,6 +24,7 @@ public class Mail implements java.io.Serializable {
 	private User userByReceiveUid;
 	private String mailTitle;
 	private String mailContent;
+	private Integer mstatus;
 
 	// Constructors
 
@@ -30,17 +33,18 @@ public class Mail implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Mail(Integer mid, User userBySendUid, User userByReceiveUid,
-			String mailTitle, String mailContent) {
-		this.mid = mid;
+	public Mail(User userBySendUid, User userByReceiveUid, String mailTitle,
+			String mailContent, Integer mstatus) {
 		this.userBySendUid = userBySendUid;
 		this.userByReceiveUid = userByReceiveUid;
 		this.mailTitle = mailTitle;
 		this.mailContent = mailContent;
+		this.mstatus = mstatus;
 	}
 
 	// Property accessors
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "mId", unique = true, nullable = false)
 	public Integer getMid() {
 		return this.mid;
@@ -84,6 +88,15 @@ public class Mail implements java.io.Serializable {
 
 	public void setMailContent(String mailContent) {
 		this.mailContent = mailContent;
+	}
+
+	@Column(name = "mStatus", nullable = false)
+	public Integer getMstatus() {
+		return this.mstatus;
+	}
+
+	public void setMstatus(Integer mstatus) {
+		this.mstatus = mstatus;
 	}
 
 }

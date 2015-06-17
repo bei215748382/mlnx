@@ -23,6 +23,7 @@ public class MailDAO extends BaseHibernateDAO {
 	// property constants
 	public static final String MAIL_TITLE = "mailTitle";
 	public static final String MAIL_CONTENT = "mailContent";
+	public static final String MSTATUS = "mstatus";
 
 	public void save(Mail transientInstance) {
 		log.debug("saving Mail instance");
@@ -93,6 +94,10 @@ public class MailDAO extends BaseHibernateDAO {
 
 	public List<Mail> findByMailContent(Object mailContent) {
 		return findByProperty(MAIL_CONTENT, mailContent);
+	}
+
+	public List<Mail> findByMstatus(Object mstatus) {
+		return findByProperty(MSTATUS, mstatus);
 	}
 
 	public List findAll() {

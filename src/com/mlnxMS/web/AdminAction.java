@@ -22,6 +22,7 @@ import com.mlnxMS.core.Copyright;
 import com.mlnxMS.core.Event;
 import com.mlnxMS.core.Header;
 import com.mlnxMS.core.Link;
+import com.mlnxMS.core.Mail;
 import com.mlnxMS.core.Navigation;
 import com.mlnxMS.core.Notice;
 import com.mlnxMS.core.Post;
@@ -38,6 +39,7 @@ import com.mlnxMS.service.EventService;
 import com.mlnxMS.service.HeaderService;
 import com.mlnxMS.service.ImageService;
 import com.mlnxMS.service.LinkService;
+import com.mlnxMS.service.MailService;
 import com.mlnxMS.service.NavigationService;
 import com.mlnxMS.service.NoticeService;
 import com.mlnxMS.service.PostService;
@@ -69,6 +71,7 @@ public class AdminAction extends BaseAction {
 	ResponseService responseService = new ResponseService();
 	NoticeService noticeService = new NoticeService();
 	EventService eventService = new EventService();
+	MailService mailService = new MailService();
 	private int length = application.getRealPath("/").indexOf("webapps");
 	/**
 	 * 管理员注销
@@ -84,6 +87,7 @@ public class AdminAction extends BaseAction {
 	 * 显示页顶信息
 	 */
 	public void showHeader() {
+		@SuppressWarnings("unchecked")
 		List<Header> headers = headerService.findAll();
 		request.setAttribute("headers", headers);
 		this.forward("showHeader.jsp");
@@ -100,7 +104,7 @@ public class AdminAction extends BaseAction {
 	public void addHeader() throws IOException {
 
 		String path = ServletActionContext.getServletContext()
-				.getRealPath("/WEB-INF").substring(0, length+7)
+				.getRealPath("/WEB-INF").substring(0, length + 7)
 				+ "/docs/upload";
 
 		String newName = System.currentTimeMillis() + ""
@@ -150,7 +154,7 @@ public class AdminAction extends BaseAction {
 	public int selcId1;
 	public void deleteHeader() throws IOException {
 		String path = ServletActionContext.getServletContext()
-				.getRealPath("/WEB-INF").substring(0, length+7)
+				.getRealPath("/WEB-INF").substring(0, length + 7)
 				+ "/docs/upload";
 		File file = new File(path + "\\"
 				+ headerService.findById(selcId1).getLogoImg());
@@ -331,7 +335,7 @@ public class AdminAction extends BaseAction {
 	public String bannerFileName;// 文件名 xxxFileName
 	public void addBanner() throws IOException {
 		String path = ServletActionContext.getServletContext()
-				.getRealPath("/WEB-INF").substring(0, length+7)
+				.getRealPath("/WEB-INF").substring(0, length + 7)
 				+ "/docs/upload";
 		String newName = System.currentTimeMillis() + ""
 				+ bannerFileName.substring(bannerFileName.lastIndexOf("."));
@@ -417,7 +421,7 @@ public class AdminAction extends BaseAction {
 	public int selcId3;
 	public void deleteBanner() throws IOException {
 		String path = ServletActionContext.getServletContext()
-				.getRealPath("/WEB-INF").substring(0, length+7)
+				.getRealPath("/WEB-INF").substring(0, length + 7)
 				+ "/docs/upload";
 		File file = new File(path + "\\"
 				+ bannerService.findById(selcId3).getBanImg());
@@ -527,7 +531,7 @@ public class AdminAction extends BaseAction {
 	public String qrcodeFileName;// 文件名 xxxFileName
 	public void addQrcode() throws IOException {
 		String path = ServletActionContext.getServletContext()
-				.getRealPath("/WEB-INF").substring(0, length+7)
+				.getRealPath("/WEB-INF").substring(0, length + 7)
 				+ "/docs/upload";
 		String newName = System.currentTimeMillis() + ""
 				+ qrcodeFileName.substring(qrcodeFileName.lastIndexOf("."));
@@ -600,7 +604,7 @@ public class AdminAction extends BaseAction {
 	public int selcId4;
 	public void deleteQrcode() throws IOException {
 		String path = ServletActionContext.getServletContext()
-				.getRealPath("/WEB-INF").substring(0, length+7)
+				.getRealPath("/WEB-INF").substring(0, length + 7)
 				+ "/docs/upload";
 		File file = new File(path + "\\"
 				+ qrcodeService.findById(selcId4).getQrImg());
@@ -768,7 +772,7 @@ public class AdminAction extends BaseAction {
 	public int pduPriority;
 	public void addProduct() throws IOException {
 		String path = ServletActionContext.getServletContext()
-				.getRealPath("/WEB-INF").substring(0, length+7)
+				.getRealPath("/WEB-INF").substring(0, length + 7)
 				+ "/docs/upload";
 		String newName = System.currentTimeMillis() + ""
 				+ productFileName.substring(productFileName.lastIndexOf("."));
@@ -862,7 +866,7 @@ public class AdminAction extends BaseAction {
 	public int selcId8;
 	public void deleteProduct() throws IOException {
 		String path = ServletActionContext.getServletContext()
-				.getRealPath("/WEB-INF").substring(0, length+7)
+				.getRealPath("/WEB-INF").substring(0, length + 7)
 				+ "/docs/upload";
 		File file = new File(path + "\\"
 				+ productService.findById(selcId8).getPduImg());
@@ -1076,7 +1080,7 @@ public class AdminAction extends BaseAction {
 	public String imgType;
 	public void addImage() throws IOException {
 		String path = ServletActionContext.getServletContext()
-				.getRealPath("/WEB-INF").substring(0, length+7)
+				.getRealPath("/WEB-INF").substring(0, length + 7)
 				+ "/docs/upload";
 		String newName = System.currentTimeMillis() + ""
 				+ imgFileName.substring(imgFileName.lastIndexOf("."));
@@ -1169,7 +1173,7 @@ public class AdminAction extends BaseAction {
 	public int selcId11;
 	public void deleteImage() throws IOException {
 		String path = ServletActionContext.getServletContext()
-				.getRealPath("/WEB-INF").substring(0, length+7)
+				.getRealPath("/WEB-INF").substring(0, length + 7)
 				+ "/docs/upload";
 		File file = new File(path + "\\"
 				+ imageService.findById(selcId11).getIid());
@@ -1308,6 +1312,19 @@ public class AdminAction extends BaseAction {
 		notice.setNtPriority(1);
 		notice.setNtStatus(0);
 		noticeService.save(notice);
+		@SuppressWarnings("unchecked")
+		List<User> users = userService.findAll();
+		for (int i = 0; i < users.size(); i++) {
+			if (users.get(i).getUid().intValue() > 0) {
+				Mail mail = new Mail();
+				mail.setUserBySendUid(userService.findById(0));
+				mail.setUserByReceiveUid(users.get(i));
+				mail.setMailTitle(ntTitle);
+				mail.setMailContent(ntContent);
+				mail.setMstatus(0);
+				mailService.save(mail);
+			}
+		}
 		response.sendRedirect("admin!showNotice.action");
 	}
 
